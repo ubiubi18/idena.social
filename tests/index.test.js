@@ -320,7 +320,7 @@ describe('idena.social.wasm', () => {
                     {
                         index: 0,
                         format: ContractArgumentFormat.String,
-                        value: JSON.stringify({ postId: '1', tipAmount: '10' }),
+                        value: JSON.stringify({ postId: '1', tipAmount: 10e18.toString() }),
                     },
                 ]
             );
@@ -354,6 +354,29 @@ describe('idena.social.wasm', () => {
             expect(parseInt(idenianDetails.tipsBalance)).toBe(10e18);
         });
 
+        it('should send a small tip', async () => {
+            const tx = await provider.Contract.call(
+                deployReceipt.contract,
+                'sendTipFromBalance',
+                '0',
+                '9999',
+                [
+                    {
+                        index: 0,
+                        format: ContractArgumentFormat.String,
+                        value: JSON.stringify({ postId: '1', tipAmount: (1).toString() }),
+                    },
+                ]
+            );
+
+            await provider.Chain.generateBlocks(1);
+
+            const receipt = await provider.Chain.receipt(tx);
+            expect(receipt.success).toBe(true);
+
+            expect(parseInt(receipt.events[0].args[2], 16)).toBe(1);
+        });
+
         it('should error when post does not exist', async () => {
             const tx = await provider.Contract.call(
                 deployReceipt.contract,
@@ -364,7 +387,7 @@ describe('idena.social.wasm', () => {
                     {
                         index: 0,
                         format: ContractArgumentFormat.String,
-                        value: JSON.stringify({ postId: '2', tipAmount: '10' }),
+                        value: JSON.stringify({ postId: '2', tipAmount: 10e18.toString() }),
                     },
                 ]
             );
@@ -408,7 +431,7 @@ describe('idena.social.wasm', () => {
                     {
                         index: 0,
                         format: ContractArgumentFormat.String,
-                        value: JSON.stringify({ postId: '1', tipAmount: '11' }),
+                        value: JSON.stringify({ postId: '1', tipAmount: 11e18.toString() }),
                     },
                 ]
             );

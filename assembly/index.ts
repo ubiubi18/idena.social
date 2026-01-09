@@ -121,7 +121,7 @@ export class IdenaSocial {
     @mutateState
     sendTipFromBalance(args: SendTipFromBalanceArgs): void {
         const postId: u128 = u128.fromString(args.postId);
-        const tipAmount: Balance = new Balance(u128.mul(u128.fromString(args.tipAmount), BASE_IDNA.value));
+        const tipAmount: Balance = new Balance(u128.fromString(args.tipAmount));
 
         util.assert(postId > u128.Zero && postId <= this.currentPostId, 'non-existent post');
         util.assert(tipAmount > Balance.Zero, 'cannot tip nothing');

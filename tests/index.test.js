@@ -268,7 +268,7 @@ describe('idena.social.wasm', () => {
                     {
                         index: 0,
                         format: ContractArgumentFormat.String,
-                        value: JSON.stringify({ recipient: '0x00001', channelId: 'general', message: 'test message', encrypted: false, replyToMessageTxId: '0x00002' }),
+                        value: JSON.stringify({ message: ['variant1', 'variant2'], messageHash: 'messageHash', encrypted: false }),
                     },
                 ]
             );
@@ -279,14 +279,13 @@ describe('idena.social.wasm', () => {
 
             expect(receipt.events.length).toBe(2);
             expect(receipt.events[0].event).toBe('sendMessage');
-            expect(receipt.events[0].args.length).toBe(7);
+            expect(receipt.events[0].args.length).toBe(6);
             expect(receipt.events[0].args[0]).toBe(sender);
-            expect(receipt.events[0].args[1]).toBe(str2hex('0x00001'));
-            expect(receipt.events[0].args[2]).toBe(str2hex('general'));
-            expect(receipt.events[0].args[3]).toBe(str2hex('test message'));
+            expect(parseInt(rmZeros(receipt.events[0].args[1]), 16)).toBe(1);
+            expect(receipt.events[0].args[2]).toBe(str2hex('variant1,variant2'));
+            expect(receipt.events[0].args[3]).toBe(str2hex('messageHash'));
             expect(receipt.events[0].args[4]).toBe(str2hex('false'));
-            expect(receipt.events[0].args[5]).toBe(str2hex('0x00002'));
-            expect(parseInt(receipt.events[0].args[6], 16)).toBe(0);
+            expect(parseInt(receipt.events[0].args[5], 16)).toBe(0);
 
             expect(receipt.events[1].event).toBe('_identity');
             expect(receipt.events[1].args.length).toBe(4);

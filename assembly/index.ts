@@ -47,11 +47,9 @@ class SendTipArgs {
 }
 
 class SendMessageArgs {
-    recipient: string = '';
-    message: string = '';
+    message: string[] = [];
+    messageHash: string = '';
     encrypted: boolean = false;
-    channelId: string = '';
-    replyToMessageTxId: string = '';
     _getIdentityGasLimit: u32 = defaultGetIdentityGasLimit;
 }
 
@@ -59,6 +57,7 @@ export class IdenaSocial {
     currentPostId: u128;
     posts: PersistentMap<u128, string>;
     identities: PersistentMap<Address, IdentityDetails>;
+    currentMessageId: u128;
 
     constructor() {
         this.currentPostId = u128.Zero;
@@ -135,16 +134,18 @@ export class IdenaSocial {
         const caller = Context.caller();
         const callerBytes = caller.toBytes();
 
+        const messageId = u128.add(this.currentMessageId, u128.fromString('1'));
+        this.currentMessageId = messageId;
+
         Host.emitEvent('sendMessage', [
             callerBytes,
-            Bytes.fromString(args.recipient),
-            Bytes.fromString(args.channelId),
-            Bytes.fromString(args.message),
+            Bytes.fromu128(messageId),
+            Bytes.fromString(args.message.toString()),
+            Bytes.fromString(args.messageHash),
             Bytes.fromString(args.encrypted.toString()),
-            Bytes.fromString(args.replyToMessageTxId),
             Bytes.fromBytes(Context.payAmount().toBytes())
         ]);
-        
+
         const currentEpoch = Context.epoch();
         const posterDetails: IdentityDetails = this.identities.get(caller, new IdentityDetails());
 

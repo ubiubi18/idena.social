@@ -21,5 +21,18 @@ jobs:
       - name: Install deps
         run: npm ci
 
+      - name: Setup Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: 1.19.13
+          cache: true
+
+      - name: Prepare contract runner sources
+        run: |
+          git clone --depth 1 --branch vibe/clean-modern-fork https://github.com/ubiubi18/idena-go.git ../idena-go
+          git -C ../idena-go checkout eb42ae52b21f0d03c96c37f347040eaf157209c4
+          git clone --depth 1 --branch vibe/clean-modern-fork https://github.com/ubiubi18/idena-wasm-binding.git ../idena-wasm-binding
+          git -C ../idena-wasm-binding checkout 3b78778061eb6203d84327c1a6f776300fc7ad32
+
       - name: Test
         run: npm test

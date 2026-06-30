@@ -11,7 +11,7 @@ const runnerBinary = path.join(
   process.platform === 'win32' ? 'idena-contract-runner.exe' : 'idena-contract-runner'
 );
 const runnerLogPath = path.join(runnerBuildDir, 'runner.log');
-const runnerUrl = process.env.IDENA_CONTRACT_RUNNER_URL || 'http://localhost:3333';
+const runnerUrl = process.env.IDENA_CONTRACT_RUNNER_URL || 'http://127.0.0.1:3333';
 const parsedRunnerUrl = new URL(runnerUrl);
 const runnerHost = parsedRunnerUrl.hostname || 'localhost';
 const runnerPort = parsedRunnerUrl.port || (parsedRunnerUrl.protocol === 'https:' ? '443' : '80');

@@ -26,6 +26,7 @@ jobs:
         with:
           go-version: 1.19.13
           cache: true
+          cache-dependency-path: test-contract-runner/go.sum
 
       - name: Prepare contract runner sources
         run: |

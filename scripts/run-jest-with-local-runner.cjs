@@ -5,18 +5,24 @@ const { spawn, spawnSync } = require('child_process');
 const contractDir = path.resolve(__dirname, '..');
 const runnerDir = path.join(contractDir, 'test-contract-runner');
 const upstreamDir = path.resolve(contractDir, '..');
-const runnerBuildDir = path.join(contractDir, 'build', 'test-contract-runner');
-const runnerBinary = path.join(
-  runnerBuildDir,
-  process.platform === 'win32' ? 'idena-contract-runner.exe' : 'idena-contract-runner'
+const whitespacePattern = /\s/;
+const tempRoot = path.join(
+  process.env.IDENA_CLEAN_FORK_TMP || '/tmp',
+  `idena-clean-fork-${process.getuid?.() || 'user'}`,
+  'contract-runner-work'
 );
+const runnerBuildDir = whitespacePattern.test(upstreamDir)
+  ? path.join(tempRoot, 'runner-build')
+  : path.join(contractDir, 'build', 'test-contract-runner');
+const runnerBinaryName =
+  process.platform === 'win32' ? 'idena-contract-runner.exe' : 'idena-contract-runner';
+const runnerBinary = path.join(runnerBuildDir, runnerBinaryName);
 const runnerLogPath = path.join(runnerBuildDir, 'runner.log');
 const runnerUrl = process.env.IDENA_CONTRACT_RUNNER_URL || 'http://127.0.0.1:3333';
 const parsedRunnerUrl = new URL(runnerUrl);
 const runnerHost = parsedRunnerUrl.hostname || 'localhost';
 const runnerPort = parsedRunnerUrl.port || (parsedRunnerUrl.protocol === 'https:' ? '443' : '80');
 const defaultToolchain = process.env.IDENA_CONTRACT_RUNNER_GOTOOLCHAIN || 'go1.19.13';
-const whitespacePattern = /\s/;
 
 function copyFilteredDir(source, destination) {
   fs.rmSync(destination, { force: true, recursive: true });
@@ -34,11 +40,6 @@ function runnerCwd() {
     return runnerDir;
   }
 
-  const tempRoot = path.join(
-    process.env.IDENA_CLEAN_FORK_TMP || '/tmp',
-    `idena-clean-fork-${process.getuid?.() || 'user'}`,
-    'contract-runner-work'
-  );
   const tempUpstream = path.join(tempRoot, 'upstream');
 
   fs.mkdirSync(tempUpstream, { recursive: true });

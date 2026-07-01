@@ -20,13 +20,8 @@
   },
   "devDependencies": {
     "assemblyscript": "0.19.23",
-    "idena-sdk-as": "^0.0.29",
+    "idena-sdk-as": "file:vendor/idena-sdk-as",
     "jest": "^29.7.0"
-  },
-  "overrides": {
-    "axios": "^1.13.2",
-    "protobufjs": "^8.0.0",
-    "secp256k1": "^5.0.1"
   },
   "type": "module",
   "exports": {

@@ -3,12 +3,9 @@ const fs = require('fs');
 
 const {
     toHexString,
-} = require('idena-sdk-js');
-
-const {
     ContractRunnerProvider,
     ContractArgumentFormat,
-} = require('idena-sdk-tests');
+} = require('./support/contract-runner.cjs');
 
 const CONTRACT_RUNNER_URL = process.env.IDENA_CONTRACT_RUNNER_URL || 'http://localhost:3333';
 

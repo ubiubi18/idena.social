@@ -36,9 +36,9 @@ jobs:
 
       - name: Prepare contract runner sources
         run: |
-          git clone --depth 1 --branch vibe/clean-modern-fork https://github.com/ubiubi18/idena-go.git ../idena-go
+          git clone --branch vibe/clean-modern-fork https://github.com/ubiubi18/idena-go.git ../idena-go
           git -C ../idena-go checkout 475443da197bf10ca81f25dcbd4a651e606e6b35
-          git clone --depth 1 --branch vibe/clean-modern-fork https://github.com/ubiubi18/idena-wasm-binding.git ../idena-wasm-binding
+          git clone --branch vibe/clean-modern-fork https://github.com/ubiubi18/idena-wasm-binding.git ../idena-wasm-binding
           git -C ../idena-wasm-binding checkout 9f5a7638f719cd8c446045e565bde8748ee16c30
 
       - name: Test

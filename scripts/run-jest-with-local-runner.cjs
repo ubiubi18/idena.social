@@ -120,7 +120,7 @@ function buildRunner() {
   ensureRunnerSources();
   fs.mkdirSync(runnerBuildDir, { recursive: true });
 
-  const result = spawnSync('go', ['build', '-o', runnerBinary, '.'], {
+  const result = spawnSync('go', ['build', '-tags=idena_memory_ipfs', '-o', runnerBinary, '.'], {
     cwd: runnerCwd(),
     env: runnerEnv(),
     stdio: 'inherit',

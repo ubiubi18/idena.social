@@ -8,7 +8,7 @@ replace github.com/idena-network/idena-wasm-binding => ../../idena-wasm-binding
 
 require (
 	github.com/idena-network/idena-go v1.1.2
-	github.com/idena-network/idena-wasm-binding v0.0.0-20260702064506-6da8d9ef0bc1
+	github.com/idena-network/idena-wasm-binding v0.0.0-20260703133323-47b198d9b194
 	github.com/pkg/errors v0.9.1
 	github.com/shopspring/decimal v1.4.0
 	github.com/tendermint/tm-db v0.6.7
@@ -253,6 +253,7 @@ require (
 	golang.org/x/text v0.38.0 // indirect
 	golang.org/x/time v0.15.0 // indirect
 	golang.org/x/tools v0.47.0 // indirect
+	golang.org/x/vuln v1.5.0 // indirect
 	golang.org/x/xerrors v0.0.0-20240903120638-7835f813f4da // indirect
 	gonum.org/v1/gonum v0.17.0 // indirect
 	google.golang.org/genproto v0.0.0-20230410155749-daa745c078e1 // indirect
@@ -269,3 +270,5 @@ replace github.com/cosmos/iavl => github.com/idena-network/iavl v0.12.3-0.202112
 //replace github.com/idena-network/idena-wasm-binding => ..\idena-wasm-binding
 
 replace github.com/ipfs/fs-repo-migrations/fs-repo-11-to-12 => github.com/idena-network/fs-repo-migrations/fs-repo-11-to-12 v0.0.0-20220601101433-9ce72c125fd3
+
+tool golang.org/x/vuln/cmd/govulncheck

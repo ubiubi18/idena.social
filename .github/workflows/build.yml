@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Check out
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
@@ -23,6 +23,12 @@ jobs:
 
       - name: Install deps
         run: npm ci
+
+      - name: Dependency audit
+        run: npm audit --audit-level=moderate
+
+      - name: Dependency signature audit
+        run: npm audit signatures
 
       - name: Run privacy audit
         run: npm run audit:privacy
@@ -37,9 +43,9 @@ jobs:
       - name: Prepare contract runner sources
         run: |
           git clone --branch vibe/clean-modern-fork https://github.com/ubiubi18/idena-go.git ../idena-go
-          git -C ../idena-go checkout 7db89b6dcf325cb9741f786c66c46d607e0f3428
+          git -C ../idena-go checkout 9d3823f3c52def461943068b41288ff01c0e78ad
           git clone --branch vibe/clean-modern-fork https://github.com/ubiubi18/idena-wasm-binding.git ../idena-wasm-binding
-          git -C ../idena-wasm-binding checkout 5f21701e0c3f7c2a8a12c2240cc14034c742184d
+          git -C ../idena-wasm-binding checkout 47b198d9b1947de743eb28d7d404a3ead877c720
 
       - name: Vulnerability scan
         run: npm run audit:contracts

@@ -8,7 +8,7 @@ replace github.com/idena-network/idena-wasm-binding => ../../idena-wasm-binding
 
 require (
 	github.com/idena-network/idena-go v1.1.2
-	github.com/idena-network/idena-wasm-binding v0.0.0-20260709235617-7d37286c3bc2
+	github.com/idena-network/idena-wasm-binding v0.0.0-20260710092321-f7c71ce32d86
 	github.com/pkg/errors v0.9.1
 	github.com/shopspring/decimal v1.4.0
 	github.com/tendermint/tm-db v0.6.7

@@ -44,11 +44,11 @@ jobs:
         run: |
           git init ../idena-go
           git -C ../idena-go remote add origin https://github.com/ubiubi18/idena-go.git
-          git -C ../idena-go fetch --depth 1 origin 2893c9ac32ec6129b93bc29910264c7917d0ea5f
+          git -C ../idena-go fetch --depth 1 origin d287cd7351ffc1a2fd704280ce3a47baea827cbc
           git -C ../idena-go checkout --detach FETCH_HEAD
           git init ../idena-wasm-binding
           git -C ../idena-wasm-binding remote add origin https://github.com/ubiubi18/idena-wasm-binding.git
-          git -C ../idena-wasm-binding fetch --depth 1 origin 693035128c8c1f0828c6a16fb5515791bcd2df53
+          git -C ../idena-wasm-binding fetch --depth 1 origin f7c71ce32d86c8ed26e74935265c95768b0230d0
           git -C ../idena-wasm-binding checkout --detach FETCH_HEAD
 
       - name: Vulnerability scan

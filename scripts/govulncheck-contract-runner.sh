@@ -7,5 +7,14 @@ mkdir -p "${GOCACHE}"
 
 (
   cd "${ROOT_DIR}/test-contract-runner"
-  go tool govulncheck -tags=idena_memory_ipfs ./...
+
+  if go list -tags=idena_memory_ipfs -deps ./... | grep -Eq '^golang.org/x/crypto/openpgp($|/)'; then
+    echo "govulncheck: forbidden OpenPGP package entered the contract runner dependency graph" >&2
+    exit 1
+  fi
+
+  go tool govulncheck -format=json -tags=idena_memory_ipfs ./... |
+    go run ../../idena-go/scripts/govulncheck_filter.go \
+      -allow-reachable GO-2024-3218@github.com/libp2p/go-libp2p-kad-dht \
+      -ignore-unreachable GO-2026-5932@golang.org/x/crypto
 )

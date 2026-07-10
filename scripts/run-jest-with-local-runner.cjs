@@ -22,7 +22,7 @@ const runnerUrl = process.env.IDENA_CONTRACT_RUNNER_URL || 'http://127.0.0.1:333
 const parsedRunnerUrl = new URL(runnerUrl);
 const runnerHost = parsedRunnerUrl.hostname || 'localhost';
 const runnerPort = parsedRunnerUrl.port || (parsedRunnerUrl.protocol === 'https:' ? '443' : '80');
-const defaultToolchain = process.env.IDENA_CONTRACT_RUNNER_GOTOOLCHAIN || 'go1.26.4';
+const defaultToolchain = process.env.IDENA_CONTRACT_RUNNER_GOTOOLCHAIN || 'go1.26.5';
 
 function copyFilteredDir(source, destination) {
   fs.rmSync(destination, { force: true, recursive: true });

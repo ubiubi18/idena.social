@@ -13,10 +13,10 @@ jobs:
 
     steps:
       - name: Check out
-        uses: actions/checkout@v7
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
         with:
           node-version: 24.18.0
           cache: npm
@@ -34,18 +34,22 @@ jobs:
         run: npm run audit:privacy
 
       - name: Setup Go
-        uses: actions/setup-go@v6
+        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
         with:
-          go-version: 1.26.4
+          go-version: 1.26.5
           cache: true
           cache-dependency-path: test-contract-runner/go.sum
 
       - name: Prepare contract runner sources
         run: |
-          git clone --branch vibe/clean-modern-fork https://github.com/ubiubi18/idena-go.git ../idena-go
-          git -C ../idena-go checkout 9d3823f3c52def461943068b41288ff01c0e78ad
-          git clone --branch vibe/clean-modern-fork https://github.com/ubiubi18/idena-wasm-binding.git ../idena-wasm-binding
-          git -C ../idena-wasm-binding checkout 47b198d9b1947de743eb28d7d404a3ead877c720
+          git init ../idena-go
+          git -C ../idena-go remote add origin https://github.com/ubiubi18/idena-go.git
+          git -C ../idena-go fetch --depth 1 origin e7737b98fe6f611265d4d6ac759c6d0abefaef42
+          git -C ../idena-go checkout --detach FETCH_HEAD
+          git init ../idena-wasm-binding
+          git -C ../idena-wasm-binding remote add origin https://github.com/ubiubi18/idena-wasm-binding.git
+          git -C ../idena-wasm-binding fetch --depth 1 origin 7d37286c3bc28b42157f2b1985c7916903db8571
+          git -C ../idena-wasm-binding checkout --detach FETCH_HEAD
 
       - name: Vulnerability scan
         run: npm run audit:contracts

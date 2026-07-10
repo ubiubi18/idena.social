@@ -1,6 +1,6 @@
 module github.com/idena-network/idena-contract-runner
 
-go 1.26.4
+go 1.26.5
 
 replace github.com/idena-network/idena-go => ../../idena-go
 
@@ -8,7 +8,7 @@ replace github.com/idena-network/idena-wasm-binding => ../../idena-wasm-binding
 
 require (
 	github.com/idena-network/idena-go v1.1.2
-	github.com/idena-network/idena-wasm-binding v0.0.0-20260703133323-47b198d9b194
+	github.com/idena-network/idena-wasm-binding v0.0.0-20260709235617-7d37286c3bc2
 	github.com/pkg/errors v0.9.1
 	github.com/shopspring/decimal v1.4.0
 	github.com/tendermint/tm-db v0.6.7
@@ -95,7 +95,7 @@ require (
 	github.com/ipfs/boxo v0.41.0 // indirect
 	github.com/ipfs/go-bitfield v1.1.0 // indirect
 	github.com/ipfs/go-block-format v0.2.3 // indirect
-	github.com/ipfs/go-cid v0.6.1 // indirect
+	github.com/ipfs/go-cid v0.6.2 // indirect
 	github.com/ipfs/go-cidutil v0.1.1 // indirect
 	github.com/ipfs/go-datastore v0.9.1 // indirect
 	github.com/ipfs/go-ds-badger v0.3.4 // indirect
@@ -243,14 +243,14 @@ require (
 	go.uber.org/zap/exp v0.3.0 // indirect
 	go.yaml.in/yaml/v2 v2.4.4 // indirect
 	go4.org v0.0.0-20230225012048-214862532bf5 // indirect
-	golang.org/x/crypto v0.53.0 // indirect
+	golang.org/x/crypto v0.54.0 // indirect
 	golang.org/x/exp v0.0.0-20260603202125-055de637280b // indirect
 	golang.org/x/mod v0.37.0 // indirect
-	golang.org/x/net v0.56.0 // indirect
-	golang.org/x/sync v0.21.0 // indirect
-	golang.org/x/sys v0.46.0 // indirect
+	golang.org/x/net v0.57.0 // indirect
+	golang.org/x/sync v0.22.0 // indirect
+	golang.org/x/sys v0.47.0 // indirect
 	golang.org/x/telemetry v0.0.0-20260625142307-59b4966ccb57 // indirect
-	golang.org/x/text v0.38.0 // indirect
+	golang.org/x/text v0.40.0 // indirect
 	golang.org/x/time v0.15.0 // indirect
 	golang.org/x/tools v0.47.0 // indirect
 	golang.org/x/vuln v1.5.0 // indirect

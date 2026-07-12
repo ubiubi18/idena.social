@@ -22,6 +22,9 @@ bytecode, network, and contract state independently before interacting with it.
   the contract is vendored locally.
 - A local Go JSON-RPC contract runner exercises the compiled Wasm against exact
   sibling `idena-go` and `idena-wasm-binding` sources with memory-only IPFS.
+- [`compatibility/stack-lock.json`](compatibility/stack-lock.json) binds those
+  sources to the reviewed legacy-compatible runtime, while the release Wasm
+  must reproduce the committed SHA-256 digest.
 - Contract-runner dependencies, node and binding revisions, CI actions, and
   audit tooling are pinned and reviewed together.
 - CI runs npm dependency/signature audits, a privacy scan, Go vulnerability

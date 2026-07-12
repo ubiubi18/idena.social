@@ -44,7 +44,7 @@ jobs:
         run: |
           git init ../idena-go
           git -C ../idena-go remote add origin https://github.com/ubiubi18/idena-go.git
-          git -C ../idena-go fetch --depth 1 origin 4947ddfd41391cca0e51dc2635aaa8a06827a890
+          git -C ../idena-go fetch --depth 1 origin aafb254786ac3c82308550a7a82642019f077d6b
           git -C ../idena-go checkout --detach FETCH_HEAD
           git init ../idena-wasm-binding
           git -C ../idena-wasm-binding remote add origin https://github.com/ubiubi18/idena-wasm-binding.git

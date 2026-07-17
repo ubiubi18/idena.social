@@ -7,6 +7,10 @@ on:
 permissions:
   contents: read
 
+env:
+  IDENA_GO_COMMIT: eeb73fbaf80493e3bcbc4a661fa3a7e2f07ec2bd
+  IDENA_WASM_BINDING_COMMIT: 67ba065fdb02aa07cced2a43a261e481ca5b39d9
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -44,12 +48,14 @@ jobs:
         run: |
           git init ../idena-go
           git -C ../idena-go remote add origin https://github.com/ubiubi18/idena-go.git
-          git -C ../idena-go fetch --depth 1 origin 211aaaf57ce9e806f8b7ac7f6a5ef301890ca822
+          git -C ../idena-go fetch --depth 1 origin "$IDENA_GO_COMMIT"
           git -C ../idena-go checkout --detach FETCH_HEAD
+          test "$(git -C ../idena-go rev-parse HEAD)" = "$IDENA_GO_COMMIT"
           git init ../idena-wasm-binding
           git -C ../idena-wasm-binding remote add origin https://github.com/ubiubi18/idena-wasm-binding.git
-          git -C ../idena-wasm-binding fetch --depth 1 origin 67ba065fdb02aa07cced2a43a261e481ca5b39d9
+          git -C ../idena-wasm-binding fetch --depth 1 origin "$IDENA_WASM_BINDING_COMMIT"
           git -C ../idena-wasm-binding checkout --detach FETCH_HEAD
+          test "$(git -C ../idena-wasm-binding rev-parse HEAD)" = "$IDENA_WASM_BINDING_COMMIT"
 
       - name: Vulnerability scan
         run: npm run audit:contracts

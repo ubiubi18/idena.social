@@ -1,5 +1,9 @@
 # idena.social
 
+## Research disclaimer
+
+This is experimental research software. I cannot guarantee its security, correctness, or fitness for any purpose. Use it at your own risk, take responsibility for your decisions, independently verify changes, and stay vigilant.
+
 AssemblyScript source and tests for the idena.social smart contract.
 
 [![Build and test](https://github.com/ubiubi18/idena.social/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/ubiubi18/idena.social/actions/workflows/build.yml)

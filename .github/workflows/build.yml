@@ -8,8 +8,8 @@ permissions:
   contents: read
 
 env:
-  IDENA_GO_COMMIT: eeb73fbaf80493e3bcbc4a661fa3a7e2f07ec2bd
-  IDENA_WASM_BINDING_COMMIT: 67ba065fdb02aa07cced2a43a261e481ca5b39d9
+  IDENA_GO_COMMIT: 0e50a50e6f5c158a83cec63f8fade2449e960364
+  IDENA_WASM_BINDING_COMMIT: 01ccca5cc3c94917725964541954a9f20e3412e9
 
 jobs:
   build:
@@ -40,7 +40,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
         with:
-          go-version: 1.26.5
+          go-version: 1.26.8
           cache: true
           cache-dependency-path: test-contract-runner/go.sum
 
